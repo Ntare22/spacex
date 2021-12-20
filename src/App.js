@@ -1,12 +1,29 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Missions from './components/Missions';
+import NavComponent from './components/NavComponent';
+import Profile from './components/Profile';
+import Rockets from './components/Rockets';
+
 const App = () => {
-  const text = 'React is working';
-  const Component = () => <h1>{text}</h1>;
+  const NotMatch = () => (
+    <>
+      <div>
+        No Match Found for the page
+      </div>
+    </>
+  );
 
   return (
     <>
-      <div>
-        <Component />
-      </div>
+      <BrowserRouter>
+        <NavComponent />
+        <Routes>
+          <Route path="/" element={<Rockets />} />
+          <Route path="/missions" element={<Missions />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="*" element={<NotMatch />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 };
