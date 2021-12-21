@@ -22,23 +22,22 @@ const Mission = (props) => {
   };
 
   return (
-    <tr className="d-flex">
+    <tr>
       <th className="col-2">{name}</th>
       <td className="col-7">{desc}</td>
-      <td className="col">
+      <td className="col align-middle">
         <Badge
-          bg="secondary"
-          isActive={status}
+          bg={status ? 'info' : 'secondary'}
         >
           {status ? 'Active Member' : 'NOT A MEMBER'}
         </Badge>
       </td>
-      <td className="col">
+      <td className="col align-middle">
         <Button
-          variant="outline-secondary"
+          variant={status ? 'outline-danger' : 'outline-secondary'}
           onClick={() => handleStatusToggle(id)}
         >
-          Join Mission
+          {status ? 'Leave Mission' : 'Join Mission'}
         </Button>
       </td>
     </tr>
@@ -61,12 +60,12 @@ const Missions = () => {
   const missions = useSelector((state) => state.missionReducer);
 
   return (
-    <Container>
+    <Container className="missions">
       <Row>
         <Col>
           <Table striped bordered hover vertical-align="middle">
             <thead>
-              <tr className="d-flex">
+              <tr>
                 <th className="col-2">Mission</th>
                 <th className="col-7">Description</th>
                 <th className="col">Status</th>
