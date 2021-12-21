@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const GET_MISSIONS = 'spacex/missions/GET_MISSIONS';
+const TOGGLE_STATUS = 'spacex/missions/TOGGLE_STATUS';
 
 const url = 'https://api.spacexdata.com/v3/missions';
 const initialState = [];
@@ -21,10 +22,19 @@ export const getMissions = () => async (dispatch) => {
   });
 };
 
+export const toggleMission = (payload) => ({
+  type: TOGGLE_STATUS,
+  payload,
+});
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_MISSIONS:
       return [...action.fetchedMissions];
+    case TOGGLE_STATUS:
+      return state.map((mission) => (mission.mission_id === action.payload
+        ? { ...mission, status: !mission.status }
+        : mission));
     default:
       return state;
   }
