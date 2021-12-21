@@ -9,26 +9,47 @@ import {
   Table,
 } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import { getMissions } from '../redux/missions/missions';
+import { getMissions, toggleMission } from '../redux/missions/missions';
 
 const Mission = (props) => {
+  const dispatch = useDispatch();
   const {
-    name, desc,
+    id, name, desc, status,
   } = props;
+
+  const handleStatusToggle = (id) => {
+    dispatch(toggleMission(id));
+  };
 
   return (
     <tr className="d-flex">
       <th className="col-2">{name}</th>
       <td className="col-7">{desc}</td>
-      <td className="col"><Badge bg="secondary">NOT A MEMBER</Badge></td>
-      <td className="col"><Button variant="outline-secondary">Join Mission</Button></td>
+      <td className="col">
+        <Badge
+          bg="secondary"
+          isActive={status}
+        >
+          {status ? 'Active Member' : 'NOT A MEMBER'}
+        </Badge>
+      </td>
+      <td className="col">
+        <Button
+          variant="outline-secondary"
+          onClick={() => handleStatusToggle(id)}
+        >
+          Join Mission
+        </Button>
+      </td>
     </tr>
   );
 };
 
 Mission.propTypes = {
+  id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   desc: PropTypes.string.isRequired,
+  status: PropTypes.bool.isRequired,
 };
 
 const Missions = () => {
@@ -54,7 +75,13 @@ const Missions = () => {
             </thead>
             <tbody>
               {missions.map((mission) => (
-                <Mission key={mission.id} name={mission.name} desc={mission.desc} />
+                <Mission
+                  key={mission.id}
+                  id={mission.id}
+                  name={mission.name}
+                  desc={mission.desc}
+                  status={mission.status}
+                />
               ))}
             </tbody>
           </Table>

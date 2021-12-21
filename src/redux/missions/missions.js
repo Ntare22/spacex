@@ -14,7 +14,10 @@ export const getMissions = () => async (dispatch) => {
     const id = mission.mission_id;
     const name = mission.mission_name;
     const desc = mission.description;
-    fetchedMissions.push({ id, name, desc });
+    const status = false;
+    fetchedMissions.push({
+      id, name, desc, status,
+    });
   });
   dispatch({
     type: GET_MISSIONS,
@@ -32,7 +35,7 @@ const reducer = (state = initialState, action) => {
     case GET_MISSIONS:
       return [...action.fetchedMissions];
     case TOGGLE_STATUS:
-      return state.map((mission) => (mission.mission_id === action.payload
+      return state.map((mission) => (mission.id === action.payload
         ? { ...mission, status: !mission.status }
         : mission));
     default:
