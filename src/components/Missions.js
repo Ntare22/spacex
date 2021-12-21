@@ -35,7 +35,10 @@ const Mission = (props) => {
       <td className="col align-middle">
         <Button
           variant={status ? 'outline-danger' : 'outline-secondary'}
-          onClick={() => handleStatusToggle(id)}
+          onClick={(e) => {
+            e.preventDefault();
+            handleStatusToggle(id);
+          }}
         >
           {status ? 'Leave Mission' : 'Join Mission'}
         </Button>
@@ -48,16 +51,18 @@ Mission.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   desc: PropTypes.string.isRequired,
-  status: PropTypes.bool.isRequired,
+  status: PropTypes.bool,
+};
+Mission.defaultProps = {
+  status: false,
 };
 
 const Missions = () => {
+  const missions = useSelector((state) => state.missionReducer);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getMissions());
+    if (missions.length === 0) dispatch(getMissions());
   }, []);
-
-  const missions = useSelector((state) => state.missionReducer);
 
   return (
     <Container className="missions">
