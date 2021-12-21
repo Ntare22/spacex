@@ -9,26 +9,46 @@ import {
   Table,
 } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import { getMissions } from '../redux/missions/missions';
+import { getMissions, toggleMission } from '../redux/missions/missions';
 
 const Mission = (props) => {
+  const dispatch = useDispatch();
   const {
-    name, desc,
+    id, name, desc, status,
   } = props;
 
+  const handleStatusToggle = (id) => {
+    dispatch(toggleMission(id));
+  };
+
   return (
-    <tr className="d-flex">
+    <tr>
       <th className="col-2">{name}</th>
       <td className="col-7">{desc}</td>
-      <td className="col"><Badge bg="secondary">NOT A MEMBER</Badge></td>
-      <td className="col"><Button variant="outline-secondary">Join Mission</Button></td>
+      <td className="col align-middle">
+        <Badge
+          bg={status ? 'info' : 'secondary'}
+        >
+          {status ? 'Active Member' : 'NOT A MEMBER'}
+        </Badge>
+      </td>
+      <td className="col align-middle">
+        <Button
+          variant={status ? 'outline-danger' : 'outline-secondary'}
+          onClick={() => handleStatusToggle(id)}
+        >
+          {status ? 'Leave Mission' : 'Join Mission'}
+        </Button>
+      </td>
     </tr>
   );
 };
 
 Mission.propTypes = {
+  id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   desc: PropTypes.string.isRequired,
+  status: PropTypes.bool.isRequired,
 };
 
 const Missions = () => {
@@ -40,12 +60,12 @@ const Missions = () => {
   const missions = useSelector((state) => state.missionReducer);
 
   return (
-    <Container>
+    <Container className="missions">
       <Row>
         <Col>
           <Table striped bordered hover vertical-align="middle">
             <thead>
-              <tr className="d-flex">
+              <tr>
                 <th className="col-2">Mission</th>
                 <th className="col-7">Description</th>
                 <th className="col">Status</th>
@@ -54,7 +74,13 @@ const Missions = () => {
             </thead>
             <tbody>
               {missions.map((mission) => (
-                <Mission key={mission.id} name={mission.name} desc={mission.desc} />
+                <Mission
+                  key={mission.id}
+                  id={mission.id}
+                  name={mission.name}
+                  desc={mission.desc}
+                  status={mission.status}
+                />
               ))}
             </tbody>
           </Table>
