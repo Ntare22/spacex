@@ -14,9 +14,11 @@ export const getMissions = () => async (dispatch) => {
     const id = mission.mission_id;
     const name = mission.mission_name;
     const desc = mission.description;
+    const web = mission.website;
+    const wiki = mission.wikipedia;
     const status = false;
     fetchedMissions.push({
-      id, name, desc, status,
+      id, name, desc, status, web, wiki,
     });
   });
   dispatch({
