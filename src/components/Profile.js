@@ -4,7 +4,7 @@ import MyMissions from './MyMissions';
 
 const Profile = () => (
   <>
-    <Container>
+    <Container className="profile">
       <Row>
         <Col md="6">
           <h2 className="text-center">My Missions</h2>
