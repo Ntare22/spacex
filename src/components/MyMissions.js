@@ -35,7 +35,7 @@ const MyMissions = () => {
               variant="outline-success"
               onClick={(e) => {
                 e.preventDefault();
-                window.open(mission.web);
+                window.open(mission.web, '_blank', 'noopener noreferrer');
               }}
             >
               Visit Website
