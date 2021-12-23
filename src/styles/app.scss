@@ -7,9 +7,11 @@
   body {
     .spaceNav {
       height: 6rem;
+
       .navbar-brand {
         font-size: 2rem;
       }
+
       .navbar-nav {
         .nav-link {
           color: #0d6efd;
@@ -17,9 +19,11 @@
           padding: 0 1rem;
           margin: 1rem auto;
         }
+
         .nav-link:active {
           text-decoration: underline;
         }
+
         .last-link {
           border-left: 1px solid #0000002f;
         }
