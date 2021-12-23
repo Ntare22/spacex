@@ -5,7 +5,7 @@ import Logo from '../assets/planet.png';
 
 const NavComponent = () => (
   <div>
-    <Navbar bg="light" variant="light">
+    <Navbar bg="light" className="spaceNav">
       <Container>
         <Navbar.Brand href="#home">
           <img src={Logo} alt="Planet Logo" height="40" />
@@ -13,15 +13,9 @@ const NavComponent = () => (
           Space Travelers&apos; Hub
         </Navbar.Brand>
         <Nav className="align-item-right">
-          <Nav.Link>
-            <Link to="/">Rockets</Link>
-          </Nav.Link>
-          <Nav.Link>
-            <Link to="/missions">Missions</Link>
-          </Nav.Link>
-          <Nav.Link>
-            <Link to="/profile">My Profile</Link>
-          </Nav.Link>
+          <Link className="nav-link" to="/">Rockets</Link>
+          <Link className="nav-link" to="/missions">Missions</Link>
+          <Link className="nav-link last-link" to="/profile">My Profile</Link>
         </Nav>
       </Container>
     </Navbar>
