@@ -2,22 +2,43 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
   Button,
+  Badge,
 } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import { getRockets } from '../redux/rockets/rockets';
+import { getRockets, toggleRocket } from '../redux/rockets/rockets';
 
 const Rocket = (props) => {
+  const dispatch = useDispatch();
   const {
-    id, name, desc, img,
+    id, name, desc, img, status,
   } = props;
+
+  const statusToggle = (id) => {
+    dispatch(toggleRocket(id));
+  };
 
   return (
     <div className="d-flex mx-auto w-75 mt-3">
       <img src={img} alt={id} height="200" width="260" />
       <div className="p-3">
         <h4>{name}</h4>
-        <p>{desc}</p>
-        <Button>Reserve Rocket</Button>
+        <p>
+          <Badge
+            bg={status ? 'info' : ''}
+          >
+            {status ? 'Reserved' : ''}
+          </Badge>
+          {desc}
+        </p>
+        <Button
+          variant={status ? 'outline-danger' : 'outline-secondary'}
+          onClick={(e) => {
+            e.preventDefault();
+            statusToggle(id);
+          }}
+        >
+          {status ? 'Cancel Reservation' : 'Reserve Rocket'}
+        </Button>
       </div>
     </div>
   );
@@ -28,6 +49,7 @@ Rocket.propTypes = {
   img: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   desc: PropTypes.string.isRequired,
+  status: PropTypes.bool.isRequired,
 };
 
 const Rockets = () => {
@@ -47,6 +69,7 @@ const Rockets = () => {
           img={rocket.img[0]}
           name={rocket.name}
           desc={rocket.desc}
+          status={rocket.status}
         />
       ))}
     </div>
