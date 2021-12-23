@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Logo from '../assets/planet.png';
 
 const NavComponent = () => (
@@ -13,9 +13,9 @@ const NavComponent = () => (
           Space Travelers&apos; Hub
         </Navbar.Brand>
         <Nav className="align-item-right">
-          <Link className="nav-link" to="/">Rockets</Link>
-          <Link className="nav-link" to="/missions">Missions</Link>
-          <Link className="nav-link last-link" to="/profile">My Profile</Link>
+          <NavLink exact activeClassName="active" className="nav-link" to="/">Rockets</NavLink>
+          <NavLink className="nav-link" to="/missions">Missions</NavLink>
+          <NavLink className="nav-link last-link" to="/profile">My Profile</NavLink>
         </Nav>
       </Container>
     </Navbar>

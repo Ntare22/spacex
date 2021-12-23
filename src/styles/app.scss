@@ -18,10 +18,12 @@
           font-size: 1.2rem;
           padding: 0 1rem;
           margin: 1rem auto;
+          text-decoration: none;
         }
 
-        .nav-link:active {
+        .nav-link.active {
           text-decoration: underline;
+          color: #0d6efd;
         }
 
         .last-link {
