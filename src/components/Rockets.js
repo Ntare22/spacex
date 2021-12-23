@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {
   Button,
   Badge,
+  Container,
 } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { getRockets, toggleRocket } from '../redux/rockets/rockets';
@@ -18,7 +19,7 @@ const Rocket = (props) => {
   };
 
   return (
-    <div className="d-flex mx-auto w-75 mt-3">
+    <div className="d-flex mx-auto mt-3">
       <img src={img} alt={id} height="200" width="260" />
       <div className="p-3">
         <h4>{name}</h4>
@@ -31,7 +32,7 @@ const Rocket = (props) => {
           {desc}
         </p>
         <Button
-          variant={status ? 'outline-danger' : 'outline-secondary'}
+          variant={status ? 'outline-danger' : 'primary'}
           onClick={(e) => {
             e.preventDefault();
             statusToggle(id);
@@ -61,7 +62,7 @@ const Rockets = () => {
   const rockets = useSelector((state) => state.rocketsReducer);
 
   return (
-    <div>
+    <Container className="rockets">
       {rockets.map((rocket) => (
         <Rocket
           key={rocket.id}
@@ -72,7 +73,7 @@ const Rockets = () => {
           status={rocket.status}
         />
       ))}
-    </div>
+    </Container>
   );
 };
 

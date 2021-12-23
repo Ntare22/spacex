@@ -69,15 +69,13 @@ const Missions = () => {
       <Row>
         <Col>
           <Table striped bordered hover vertical-align="middle">
-            <thead>
+            <tbody>
               <tr>
                 <th className="col-2">Mission</th>
                 <th className="col-7">Description</th>
                 <th className="col">Status</th>
                 <th className="col"> </th>
               </tr>
-            </thead>
-            <tbody>
               {missions.map((mission) => (
                 <Mission
                   key={mission.id}
