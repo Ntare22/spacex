@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import MyMissions from './MyMissions';
+import MyRockets from './MyRockets';
 
 const Profile = () => (
   <>
@@ -12,6 +13,7 @@ const Profile = () => (
         </Col>
         <Col md="6">
           <h2 className="text-center">My Rockets</h2>
+          <MyRockets />
         </Col>
       </Row>
     </Container>
