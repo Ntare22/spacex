@@ -17,30 +17,27 @@ Working with the real live data from the SpaceX API to build a web application f
 ## Getting Started
 
 To get a local copy up and running follow these simple example steps.
+Clone the repo and enter the directory.
+```
+git clone git@github.com:Ntare22/spacex.git && cd space-traveler
+```
 
 ### Prerequisites
     - node
 
 ### Setup
+After cloning the repository to your local machine. Install the npm packages. Run:
 ```
-- Clone the repository to your local machine.
-- npm install
+npm install
 ```
 #### Development
+Run `npm start` to start the local server and try the app.
 ```
-- Clone the repository to your local machine.
 - npm start
 ```
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
-
-#### Test
-`npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
 
 #### Deployement
 
