@@ -23,7 +23,7 @@ Working with the real live data from the SpaceX API to build a web application f
 To get a local copy up and running follow these simple example steps.
 Clone the repo and enter the directory.
 ```
-git clone git@github.com:Ntare22/spacex.git && cd space-traveler
+git clone git@github.com:Ntare22/spacex.git && cd spacex
 ```
 
 ### Prerequisites
